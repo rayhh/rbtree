@@ -15,10 +15,12 @@
 
 #include "rbtree.h"
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-struct over_speed_node{
+typedef struct over_speed_node{
 	uint32_t bandwidth_id;
 	uint64_t rx_over_speed;
 	uint64_t tx_over_speed;
@@ -54,7 +56,7 @@ static bool comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 	uint64_t Max_value = max(ar, max(at, max(br, bt)));
 	if(Max_value == max(ar, at) && Max_value == max(br, bt))
 	{
-		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id < nodeb->bandwidth_id);
+		return 0;
 	} 
 	else if(Max_value == max(ar, at))
 	{
