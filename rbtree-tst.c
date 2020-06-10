@@ -34,22 +34,10 @@ struct mynode {
 
 struct rb_root mytree = RB_ROOT;
 
+int max(uint64_t a, uint64_t b){
+	return a>b ? a : b;
+ }
 
-// compare function for sort
-static bool comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
-{
-	if((nodea->is_limited == 0) && (nodeb->is_limited == 0)) 
-	{
-		return comp_help(nodea->rx_over_speed, nodea->tx_over_speed, \
-		nodeb->rx_over_speed, nodeb->tx_over_speed);
-	}
-  	else if(nodea->is_limited || nodeb->is_limited)
-	{
-		return nodea->is_limited ? -1 : 1;
-	}
-	else   //都已经派发了meter则如何排序？
-		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id < nodeb->bandwidth_id); 
-}
 
 static bool comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 {
@@ -67,6 +55,25 @@ static bool comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 		return -1;
 	} 
 }
+
+
+// compare function for sort
+static bool comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
+{
+	if((nodea->is_limited == 0) && (nodeb->is_limited == 0)) 
+	{
+		return comp_help(nodea->rx_over_speed, nodea->tx_over_speed, \
+		nodeb->rx_over_speed, nodeb->tx_over_speed);
+	}
+  	else if(nodea->is_limited || nodeb->is_limited)
+	{
+		return nodea->is_limited ? -1 : 1;
+	}
+	else   //都已经派发了meter则如何排序？
+		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id < nodeb->bandwidth_id); 
+}
+
+
 
 struct mynode * my_search(struct rb_root *root, over_speed_node_t *over_speed_data)
 {
