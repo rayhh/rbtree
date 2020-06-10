@@ -69,7 +69,8 @@ static int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
 		return nodea->is_limited ? 1 : -1;
 	}
 	else   //都已经派发了meter则如何排序？
-		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id > nodeb->bandwidth_id); 
+		return comp_help(nodea->rx_over_speed, nodea->tx_over_speed, \
+		nodeb->rx_over_speed, nodeb->tx_over_speed);
 }
 
 
