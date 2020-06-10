@@ -15,7 +15,6 @@
 
 #include "rbtree.h"
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -39,7 +38,7 @@ int max(uint64_t a, uint64_t b){
  }
 
 
-static bool comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
+static int comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 {
 	uint64_t Max_value = max(ar, max(at, max(br, bt)));
 	if(Max_value == max(ar, at) && Max_value == max(br, bt))
@@ -58,7 +57,7 @@ static bool comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 
 
 // compare function for sort
-static bool comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
+static int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
 {
 	if((nodea->is_limited == 0) && (nodeb->is_limited == 0)) 
 	{
