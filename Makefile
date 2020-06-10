@@ -1,14 +1,16 @@
-all:rbtree-tst
+all:rbtreemain
 
 CFLAGS=-g -O0 -Wall
 
-rbtree-tst:rbtree-tst.o rbtree.o
+rbtreemain:rbtreemain.o over_speed_rbtree.o rbtree.o
 
 rbtree.o:rbtree.h rbtree.c
 
-rbtree-tst.o:rbtree-tst.c
+over_speed_rbtree:over_speed_rbtree.h over_speed_rbtree.c
+
+rbtreemain.o:rbtreemain.c
 
 .PHONY:clean
 
 clean:
-	rm *.o rbtree-tst
+        rm *.o rbtreemain

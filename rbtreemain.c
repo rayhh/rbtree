@@ -3,6 +3,7 @@
 
 
 #define NUM_NODES 10
+struct rb_root mytree = RB_ROOT;
 
 int main()
 {

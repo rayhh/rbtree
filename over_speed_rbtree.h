@@ -19,13 +19,13 @@ struct over_speed_node_info {
   	over_speed_node_t *over_speed_data;
 };
 
-struct rb_root mytree = RB_ROOT;
 
-int comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt);
-int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb);
-struct over_speed_node_info * my_search(struct rb_root *root, over_speed_node_t *over_speed_data);
-int my_insert(struct rb_root *root, struct over_speed_node_info *data);
-void my_free(struct over_speed_node_info *node);
+
+extern int comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt);
+extern int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb);
+extern struct over_speed_node_info * my_search(struct rb_root *root, over_speed_node_t *over_speed_data);
+extern int my_insert(struct rb_root *root, struct over_speed_node_info *data);
+extern void my_free(struct over_speed_node_info *node);
 
 
 
