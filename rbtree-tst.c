@@ -47,11 +47,11 @@ static int comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt)
 	} 
 	else if(Max_value == max(ar, at))
 	{
-		return 1;
+		return -1;
 	}
 	else
 	{
-		return -1;
+		return 1;
 	} 
 }
 
@@ -66,10 +66,10 @@ static int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb)
 	}
   	else if(nodea->is_limited || nodeb->is_limited)
 	{
-		return nodea->is_limited ? -1 : 1;
+		return nodea->is_limited ? 1 : -1;
 	}
 	else   //都已经派发了meter则如何排序？
-		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id < nodeb->bandwidth_id); 
+		return (nodea->bandwidth_id == nodeb->bandwidth_id) ? 0: (nodea->bandwidth_id > nodeb->bandwidth_id); 
 }
 
 
@@ -178,7 +178,7 @@ int main()
 	}
 
 	/* *delete again*/
-	printf("delete node 1006: \n");
+	printf("delete bandwidth_id 1006: \n");
 	key->bandwidth_id = 1006;
 	key->tx_over_speed = 14;
 	key->rx_over_speed = 14;
@@ -189,13 +189,6 @@ int main()
 		my_free(data);
 	}
 
-	/* *delete once again*/
-	printf("delete node 15: \n");
-	data = my_search(&mytree, "15");
-	if (data) {
-		rb_erase(&data->node, &mytree);
-		my_free(data);
-	}
 
 	/* *search again*/
 	printf("search again:\n");
