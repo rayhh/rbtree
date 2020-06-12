@@ -19,8 +19,6 @@ struct over_speed_node_info {
   	over_speed_node_t *over_speed_data;
 };
 
-extern struct rb_root mytree = RB_ROOT;
-
 extern int comp_help(uint64_t ar, uint64_t at, uint64_t br, uint64_t bt);
 extern int comp(over_speed_node_t *nodea,	over_speed_node_t *nodeb);
 extern struct over_speed_node_info * my_search(struct rb_root *root, over_speed_node_t *over_speed_data);

@@ -3,7 +3,7 @@
 
 
 #define NUM_NODES 10
-
+struct rb_root mytree = RB_ROOT;
 
 int main()
 {
@@ -73,9 +73,9 @@ int main()
 		rb_entry(node, struct over_speed_node_info, node)->over_speed_data->is_limited);
 	}
 
-	struct over_speed_info_t *nw[3];
+	struct over_speed_node_info *nw[3];
 
-	for(int i=0;i<3;i++){
+	for(i=0;i<3;i++){
 		nw[i] = (struct over_speed_node_info *)malloc(sizeof(struct over_speed_node_info));
 		nw[i]->over_speed_data = (over_speed_node_t *)malloc(sizeof(over_speed_node_t));
 		nw[i]->over_speed_data->bandwidth_id = 3000+i;
