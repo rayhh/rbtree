@@ -2,7 +2,7 @@
 #include "over_speed_rbtree.h"
 
 
-#define NUM_NODES 10
+#define NUM_NODES 5
 struct rb_root mytree = RB_ROOT;
 
 int main()
@@ -37,28 +37,19 @@ int main()
 
 
 	/* *delete */
-	printf("delete bandwidth_id 1002: \n");
-	over_speed_node_t *key = (over_speed_node_t *)malloc(sizeof(over_speed_node_t));
-	key->bandwidth_id = 1002;
-	key->tx_over_speed = 18;
-	key->rx_over_speed = 18;
-	key->is_limited = 0;
-	struct over_speed_node_info *data = my_search(&mytree, key);
-	if (data) {
-		rb_erase(&data->node, &mytree);
-		my_free(data);
-	}
-
-	/* *delete again*/
-	printf("delete bandwidth_id 1006: \n");
-	key->bandwidth_id = 1006;
-	key->tx_over_speed = 14;
-	key->rx_over_speed = 14;
-	key->is_limited = 1;
-	data = my_search(&mytree, key);
-	if (data) {
-		rb_erase(&data->node, &mytree);
-		my_free(data);
+	printf("delete all \n");
+	for(i=0;i<NUM_NODES;i++)
+	{
+		over_speed_node_t *key = (over_speed_node_t *)malloc(sizeof(over_speed_node_t));
+		key->bandwidth_id = 1000+i;
+		key->tx_over_speed = 20-i;
+		key->rx_over_speed = 20-i;
+		key->is_limited = 0;
+		struct over_speed_node_info *data = my_search(&mytree, key);
+		if (data) {
+			rb_erase(&data->node, &mytree);
+			my_free(data);
+		}
 	}
 
 
